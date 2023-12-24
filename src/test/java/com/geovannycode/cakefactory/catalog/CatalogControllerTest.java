@@ -1,4 +1,4 @@
-package com.geovannycode.cakefactory;
+package com.geovannycode.cakefactory.catalog;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -58,6 +58,6 @@ public class CatalogControllerTest {
     }
 
     private void mockItems(String title, BigDecimal price) {
-        when(catalogService.getItems()).thenReturn(Collections.singletonList(new Item(title, price)));
+        when(catalogService.getItems()).thenReturn(Collections.singletonList(new Item("test", title, price)));
     }
 }

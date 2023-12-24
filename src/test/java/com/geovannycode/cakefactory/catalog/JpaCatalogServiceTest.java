@@ -1,4 +1,4 @@
-package com.geovannycode.cakefactory;
+package com.geovannycode.cakefactory.catalog;
 
 import com.geovannycode.cakefactory.entity.Item;
 import com.geovannycode.cakefactory.entity.ItemEntity;
