@@ -5,4 +5,5 @@ import com.geovannycode.cakefactory.entity.Item;
 public interface CatalogService {
 
     Iterable<Item> getItems();
+    Item getItemBySku(String sku);
 }

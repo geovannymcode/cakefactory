@@ -1,6 +1,7 @@
 package com.geovannycode.cakefactory.service;
 
 import com.geovannycode.cakefactory.entity.Item;
+import com.geovannycode.cakefactory.entity.ItemEntity;
 import com.geovannycode.cakefactory.repository.ItemRepository;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +19,22 @@ public class JpaCatalogService implements CatalogService{
     @Override
     public Iterable<Item> getItems() {
         return StreamSupport.stream(itemRepository.findAll().spliterator(), false)
-                .map(entity -> new Item(entity.title, entity.price))
+                .map(this::mapEntity)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Item getItemBySku(String sku) {
+        ItemEntity entity = this.itemRepository.findBySku(sku);
+        if (entity == null) {
+            return null;
+        }
+
+        return mapEntity(entity);
+    }
+
+    Item mapEntity(ItemEntity entity) {
+        return new Item(entity.sku, entity.title, entity.price);
     }
 
 }
