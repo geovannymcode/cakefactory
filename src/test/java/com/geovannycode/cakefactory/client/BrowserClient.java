@@ -1,12 +1,9 @@
 package com.geovannycode.cakefactory.client;
 
+import com.gargoylesoftware.htmlunit.html.*;
 import lombok.extern.slf4j.Slf4j;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.DomNode;
-import com.gargoylesoftware.htmlunit.html.HtmlElement;
-import com.gargoylesoftware.htmlunit.html.HtmlInput;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import lombok.SneakyThrows;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.htmlunit.MockMvcWebClientBuilder;
@@ -104,8 +101,63 @@ public class BrowserClient {
         return items.get(0);
     }
 
+    @SneakyThrows
+    public void goToSignupPage() {
+        this.currentPage = this.webClient.getPage("http://localhost/signup");
+    }
+
+    @SneakyThrows
+    public void goToAccountPage() {
+        this.currentPage = this.webClient.getPage("http://localhost/account");
+    }
+
+    public void fillInDetails(String email, String password, String addressLine1, String addressLine2, String postcode) {
+        setValue("#email", email);
+        setValue("#password", password);
+        fillInAddress(addressLine1, addressLine2, postcode);
+    }
+
+    @SneakyThrows
+    public void completeSignup() {
+        HtmlButton signupButton = this.currentPage.querySelector("#signup");
+        this.currentPage = signupButton.click();
+    }
+
+    public String getCurrentUserEmail() {
+        return this.currentPage.querySelector("#current-user").getTextContent();
+    }
+
+    @SneakyThrows
+    public void goToLoginPage() {
+        this.currentPage = this.webClient.getPage("http://localhost/login");
+    }
+
+    public void fillInLogin(String email, String password) {
+        setValue("#username", email);
+        setValue("#password", password);
+    }
+
+    @SneakyThrows
+    public void clickPrimaryButton() {
+        HtmlButton loginButton = this.currentPage.querySelector(".btn-primary");
+        this.currentPage = loginButton.click();
+    }
+
+    public String getAddressLine1() {
+        return this.currentPage.querySelector("#addressLine1").getTextContent();
+    }
+
+    public String getAddressLine2() {
+        return this.currentPage.querySelector("#addressLine2").getTextContent();
+    }
+
+    public String getPostcode() {
+        return this.currentPage.querySelector("#postcode").getTextContent();
+    }
+
     private void setValue(String selector, String value) {
         HtmlInput input = this.currentPage.querySelector(selector);
         input.setValueAttribute(value);
+
     }
 }

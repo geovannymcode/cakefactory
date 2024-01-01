@@ -1,8 +1,9 @@
-package com.geovannycode.cakefactory.service;
+package com.geovannycode.cakefactory.service.impl;
 
 import com.geovannycode.cakefactory.entity.BasketItem;
 import com.geovannycode.cakefactory.entity.Item;
 import com.geovannycode.cakefactory.repository.Basket;
+import com.geovannycode.cakefactory.service.CatalogService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;

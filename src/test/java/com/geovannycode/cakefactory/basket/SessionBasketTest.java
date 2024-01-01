@@ -4,7 +4,7 @@ import com.geovannycode.cakefactory.entity.BasketItem;
 import com.geovannycode.cakefactory.entity.Item;
 import com.geovannycode.cakefactory.repository.Basket;
 import com.geovannycode.cakefactory.service.CatalogService;
-import com.geovannycode.cakefactory.service.SessionBasket;
+import com.geovannycode.cakefactory.service.impl.SessionBasket;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

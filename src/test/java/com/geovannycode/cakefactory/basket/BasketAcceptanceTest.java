@@ -1,28 +1,12 @@
 package com.geovannycode.cakefactory.basket;
 
+import com.geovannycode.cakefactory.AcceptanceTest;
 import com.geovannycode.cakefactory.client.BrowserClient;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-public class BasketIntegrationTest {
-
-    @Autowired
-    MockMvc mockMvc;
-
-    private BrowserClient client;
-
-    @BeforeEach
-    void setUp() {
-        client = new BrowserClient(mockMvc);
-    }
+public class BasketAcceptanceTest extends AcceptanceTest {
 
     @Test
     void addsItemsToBasket() {
@@ -70,5 +54,21 @@ public class BasketIntegrationTest {
         client.completeOrder();
 
         assertThat(client.pageText()).contains("Your order is now complete");
+    }
+
+    @Test
+    void prePopulatesAddressForARegisteredUser() {
+        String addressLine1 = "line 1";
+        String addressLine2 = "line 2";
+        String postcode = "postcode";
+
+        client.goToSignupPage();
+        client.fillInDetails("test@example.com", "test", addressLine1, addressLine2, postcode);
+        client.completeSignup();
+
+        client.goToBasket();
+        assertThat(client.getAddressLine1()).isEqualTo(addressLine1);
+        assertThat(client.getAddressLine2()).isEqualTo(addressLine2);
+        assertThat(client.getPostcode()).isEqualTo(postcode);
     }
 }

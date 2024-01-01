@@ -3,7 +3,7 @@ package com.geovannycode.cakefactory.catalog;
 import com.geovannycode.cakefactory.entity.Item;
 import com.geovannycode.cakefactory.entity.ItemEntity;
 import com.geovannycode.cakefactory.repository.ItemRepository;
-import com.geovannycode.cakefactory.service.JpaCatalogService;
+import com.geovannycode.cakefactory.service.impl.JpaCatalogService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class JpaCatalogServiceTest {
@@ -33,19 +36,33 @@ public class JpaCatalogServiceTest {
     @DisplayName("returns data from the database")
     void returnsDataFromDatabase() {
         String expectedTitle = "Victoria Sponge";
-        saveTestItem(expectedTitle, BigDecimal.valueOf(5.55));
+        String expectedSku = saveTestItem(expectedTitle, BigDecimal.valueOf(5.55));
 
         Iterable<Item> items = jpaCatalogService.getItems();
 
-        org.assertj.core.api.Assertions.assertThat(items).anyMatch(item -> expectedTitle.equals(item.getTitle()));
+        assertThat(items).anyMatch(item -> expectedTitle.equals(item.getTitle()) && expectedSku.equals(item.getSku()));
     }
 
-    private void saveTestItem(String title, BigDecimal price) {
+    @Test
+    @DisplayName("returns a single item from the database")
+    void returnsItemBySku() {
+        String expectedTitle = "Victoria Sponge";
+        String expectedSku = saveTestItem(expectedTitle, BigDecimal.valueOf(5.55));
+
+        Item itemBySku = jpaCatalogService.getItemBySku(expectedSku);
+
+        assertThat(itemBySku.getTitle()).isEqualTo(expectedTitle);
+    }
+
+    private String saveTestItem(String title, BigDecimal price) {
         ItemEntity itemEntity = new ItemEntity();
-        itemEntity.sku = "test-item-1";
+        String sku = UUID.randomUUID().toString().replace("-", "");
+        itemEntity.sku = sku;
         itemEntity.title = title;
         itemEntity.price = price;
 
         testEntityManager.persistAndFlush(itemEntity);
+
+        return sku;
     }
 }

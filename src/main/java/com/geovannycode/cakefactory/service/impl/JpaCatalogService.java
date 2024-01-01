@@ -1,15 +1,16 @@
-package com.geovannycode.cakefactory.service;
+package com.geovannycode.cakefactory.service.impl;
 
 import com.geovannycode.cakefactory.entity.Item;
 import com.geovannycode.cakefactory.entity.ItemEntity;
 import com.geovannycode.cakefactory.repository.ItemRepository;
+import com.geovannycode.cakefactory.service.CatalogService;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Component
-public class JpaCatalogService implements CatalogService{
+public class JpaCatalogService implements CatalogService {
 
     private final ItemRepository itemRepository;
 
