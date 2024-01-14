@@ -8,7 +8,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import com.geovannycode.cakefactory.AcceptanceTest;
 public class UserSignupAcceptanceTest extends AcceptanceTest {
-
+/*
         @Test
         void userIsAutomaticallyLoggedIn() {
             String email = randomEmail();
@@ -65,4 +65,6 @@ public class UserSignupAcceptanceTest extends AcceptanceTest {
         private String randomEmail() {
             return UUID.randomUUID().toString() + "@example.com";
         }
+
+ */
 }

@@ -1,15 +1,12 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.2.1'
-	id 'io.spring.dependency-management' version '1.1.4'
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 }
 
 group = 'com.geovannycode'
+sourceCompatibility = '11'
 version = '1.0.0'
-
-java {
-	sourceCompatibility = '17'
-}
 
 configurations {
 	compileOnly {
@@ -52,9 +49,12 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 
-	testRuntimeOnly 'com.h2database:h2'
+	testRuntime 'com.h2database:h2'
+
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
 }
+
+

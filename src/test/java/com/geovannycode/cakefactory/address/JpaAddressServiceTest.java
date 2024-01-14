@@ -15,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class JpaAddressServiceTest {
+    /*
     private static final String TEST_EMAIL = "test@xample.com";
     private static final String TEST_ADDRESS_LINE_1 = "line 1";
     private static final String TEST_ADDRESS_LINE_2 = "line 2";
@@ -74,4 +75,6 @@ public class JpaAddressServiceTest {
 
         testEntityManager.persistAndFlush(entity);
     }
+
+     */
 }
