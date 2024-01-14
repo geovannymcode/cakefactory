@@ -10,8 +10,10 @@ import com.geovannycode.cakefactory.service.AccountService;
 import com.geovannycode.cakefactory.service.AddressService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -26,8 +28,9 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 @WebMvcTest(controllers = BasketController.class)
+@Import(OAuth2ClientAutoConfiguration.class)
 public class BasketControllerTest {
-/*
+
     @Autowired
     MockMvc mockMvc;
 
@@ -93,5 +96,4 @@ public class BasketControllerTest {
         assertThat(browserClient.getPostcode()).isEqualTo(expectedPostcode);
     }
 
- */
 }

@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class JpaCatalogServiceTest {
-/*
+
     @Autowired
     TestEntityManager testEntityManager;
 
@@ -66,5 +66,4 @@ public class JpaCatalogServiceTest {
         return sku;
     }
 
- */
 }

@@ -4,6 +4,10 @@ import com.geovannycode.cakefactory.controller.SignupController;
 import com.geovannycode.cakefactory.service.SignupService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -38,5 +42,41 @@ public class SignupControllerTest {
 
         String signupResponse = signupController.signup(email, "password", "line1", "line2", "P1 CD");
         assertThat(signupResponse).isEqualTo("redirect:/login");
+    }
+
+    @Test
+    void redirectsToHomepageIfAlreadySignedUp() {
+        String email = "test@example.com";
+        when(signupService.accountExists(email)).thenReturn(true);
+
+        UsernamePasswordAuthenticationToken principal = new UsernamePasswordAuthenticationToken(email, "", Collections.emptyList());
+        ModelAndView signupResponse = signupController.signup(principal);
+        assertThat(signupResponse.getViewName()).isEqualTo("redirect:/");
+    }
+
+    @Test
+    void displaySignupPageIfNotYetSignedUp() {
+        String email = "test@example.com";
+        when(signupService.accountExists(email)).thenReturn(false);
+
+        UsernamePasswordAuthenticationToken principal = new UsernamePasswordAuthenticationToken(email, "", Collections.emptyList());
+        ModelAndView signupResponse = signupController.signup(principal);
+        assertThat(signupResponse.getViewName()).isEqualTo("signup");
+    }
+
+    @Test
+    void setsDefaultEmailForAuthenticatedUser() {
+        String email = "test@example.com";
+        when(signupService.accountExists(email)).thenReturn(false);
+
+        UsernamePasswordAuthenticationToken principal = new UsernamePasswordAuthenticationToken(email, "", Collections.emptyList());
+        ModelAndView signupResponse = signupController.signup(principal);
+        assertThat(signupResponse.getModel().get("email")).isEqualTo(email);
+    }
+
+    @Test
+    void displaysSignupPageForNonAuthenticatedUser() {
+        ModelAndView signupResponse = signupController.signup(null);
+        assertThat(signupResponse.getViewName()).isEqualTo("signup");
     }
 }
