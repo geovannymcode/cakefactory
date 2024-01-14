@@ -62,6 +62,7 @@
                                 <form action="/basket" method="post">
                                     <input type="hidden" name="sku" value="{{sku}}"/>
                                     <button class="btn btn-primary float-right add-to-basket" type="submit">Add</button>
+                                    <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
                                 </form>
                             </div>
                         </div>

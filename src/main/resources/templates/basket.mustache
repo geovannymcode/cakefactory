@@ -23,6 +23,7 @@
                             <form method="post" action="/basket/delete">
                                 <input name="sku" value="{{item.sku}}" type="hidden"/>
                                 <button class="btn btn-danger btn-sm remove-item" type="submit">Remove</button>
+                                <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
                             </form>
                         </td>
                     </tr>
@@ -38,17 +39,18 @@
             <form method="post" action="/order">
                 <div class="form-group">
                     <label for="addressLine1">Address Line 1</label>
-                    <input required type="text" class="form-control" name="addressLine1" id="addressLine1" placeholder="Address Line 1">
+                    <input required type="text" class="form-control" name="addressLine1" id="addressLine1" placeholder="Address Line 1" value="{{addressLine1}}">
                 </div>
                 <div class="form-group">
                     <label for="addressLine2">Address Line 1</label>
-                    <input type="text" class="form-control" name="addressLine2" id="addressLine2" placeholder="Address Line 2">
+                    <input type="text" class="form-control" name="addressLine2" id="addressLine2" placeholder="Address Line 2" value="{{addressLine2}}">
                 </div>
                 <div class="form-group">
                     <label for="postcode">Postcode</label>
-                    <input required type="text" class="form-control" name="postcode" id="postcode" placeholder="Postcode">
+                    <input required type="text" class="form-control" name="postcode" id="postcode" placeholder="Postcode" value="{{postcode}}">
                 </div>
                 <button type="submit" class="btn btn-primary float-right" id="complete-order">Complete order</button>
+                <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
             </form>
         </div>
     </div>

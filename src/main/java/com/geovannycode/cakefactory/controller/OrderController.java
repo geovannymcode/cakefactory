@@ -1,7 +1,7 @@
 package com.geovannycode.cakefactory.controller;
 
 import com.geovannycode.cakefactory.repository.Basket;
-import com.geovannycode.cakefactory.service.OrderReceivedEvent;
+import com.geovannycode.cakefactory.utils.OrderReceivedEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +27,8 @@ public class OrderController {
     }
 
     @GetMapping
-    ModelAndView order() {
-        return new ModelAndView("order", Map.of("basketTotal", 0));
+    String order() {
+        return "order";
     }
 
     @PostMapping

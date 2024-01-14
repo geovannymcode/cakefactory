@@ -1,4 +1,4 @@
-package com.geovannycode.cakefactory.service;
+package com.geovannycode.cakefactory.utils;
 
 import com.geovannycode.cakefactory.entity.BasketItem;
 import lombok.Data;
