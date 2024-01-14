@@ -35,7 +35,7 @@ public class AccountController {
     }
 
     @PostMapping
-    String updateAccount(Principal principal, String addressLine1, String addressLine2, String postcode) {
+    String updateAddress(Principal principal, String addressLine1, String addressLine2, String postcode) {
         if (principal == null) {
             return "redirect:/login";
         }

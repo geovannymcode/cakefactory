@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when;
 
 @WebMvcTest(controllers = CatalogController.class)
 public class CatalogControllerTest {
-/*
+
     private WebClient webClient;
 
     @Autowired
@@ -110,5 +110,5 @@ public class CatalogControllerTest {
         when(catalogService.getItems()).thenReturn(Collections.singletonList(new Item("test", title, price)));
     }
 
- */
+
 }

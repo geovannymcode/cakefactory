@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class JpaAccountServiceTest {
-/*
+
     @Autowired
     AccountRepository accountRepository;
 
@@ -78,5 +78,5 @@ public class JpaAccountServiceTest {
         testEntityManager.persist(accountEntity);
     }
 
- */
+
 }
