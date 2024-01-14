@@ -53,6 +53,8 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 
+	implementation 'com.paypal.sdk:checkout-sdk:1.0.2'
+
 	testRuntime 'com.h2database:h2'
 
 }
