@@ -1,0 +1,9 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "dockerhubusername/cake-factory:latest"
+  },
+  "Ports": [{
+    "ContainerPort": "8080"
+  }]
+}

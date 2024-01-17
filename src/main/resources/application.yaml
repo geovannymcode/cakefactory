@@ -16,3 +16,6 @@ spring:
         provider:
           facebook:
             user-name-attribute: email
+
+server:
+  forward-headers-strategy: framework
