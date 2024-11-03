@@ -1,2 +1,2 @@
 # cakefactory
-Demo project for Spring Boot e-commerce
+Project for Spring Boot E-Commerce
