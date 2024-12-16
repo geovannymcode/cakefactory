@@ -1,2 +1,2 @@
 # cakefactory
-Project for Spring Boot E-Commerce
+Project of Spring Boot E-Commerce with paypal
